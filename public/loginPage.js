@@ -1,17 +1,22 @@
 "use strict";
-class UserForm {
-    constructor (){
-        this.loginFormCallback = loginFormAction(date);
-        this.registerFormCallback = registerFormAction(date);
-    }
-    loginFormAction()
+
+const { response } = require("express"); //строка сама появилась
+
+const userForm = new userForm();
+userForm.loginFormCallback = getData => console.log(getData);
+
+//проверка успешности запроса
+ApiConnector.login({login, password}, response => console.log(response)){
+    if (response === false){
+        console.log("Пользователь с логином не найден");
+    } else {
+        location.reload();
+    };
+
 }
-//const userForm = new UserForm();
-class ApiConnector {
-    constructor (){
-    }
-    login({login, password}, callback){
-    }
-    register({login, password}, callback){
-    }
-}
+//{success: false, data: "Пользователь с логином не найден"}
+//{success: true, userId: "1"}
+
+
+
+

@@ -1,21 +1,35 @@
 "use strict";
 
-const { response } = require("express"); //строка сама появилась
+const userForm = new UserForm();
 
-const userForm = new userForm();
-userForm.loginFormCallback = getData => console.log(getData);
-
-//проверка успешности запроса
-ApiConnector.login({login, password}, response => console.log(response)){
-    if (response === false){
-        console.log("Пользователь с логином не найден");
-    } else {
-        location.reload();
-    };
-
+userForm.loginFormCallback = (data) => {
+    this.data = data;
+    ApiConnector.login(data, (response)=>{
+        if (data === False){
+            response = `Пользователь с логином ${this.data} и указанным паролем не найден`
+            return response;
+        } else {
+            userId = '1'; // нужно где-то использовать?
+            location.reload();
+        }
+        console.log(data);
+    });
 }
-//{success: false, data: "Пользователь с логином не найден"}
-//{success: true, userId: "1"}
+
+userForm.registerFormCallback = (data) => {
+    this.data = data;
+    ApiConnector.register(data, (response)=>{
+        if (data === False){
+            response = `Пользователь с логином ${this.data} уже существует`
+            return response;
+        } else {
+            userId = '1'; // нужно где-то использовать?
+            location.reload();
+        }
+        console.log(data);
+    });
+}
+
 
 
 

@@ -3,30 +3,24 @@
 const userForm = new UserForm();
 
 userForm.loginFormCallback = (data) => {
-    this.data = data;
     ApiConnector.login(data, (response)=>{
-        if (data === False){
-            response = `Пользователь с логином ${this.data} и указанным паролем не найден`
-            return response;
-        } else {
-            userId = '1'; // нужно где-то использовать?
+        console.log(response);
+        if (response.success === true){
             location.reload();
+        } else {
+            userForm.setLoginErrorMessage(`Пользователь с логином ${data} и указанным паролем не найден`)
         }
-        console.log(data);
     });
 }
 
 userForm.registerFormCallback = (data) => {
-    this.data = data;
     ApiConnector.register(data, (response)=>{
-        if (data === False){
-            response = `Пользователь с логином ${this.data} уже существует`
-            return response;
-        } else {
-            userId = '1'; // нужно где-то использовать?
+        console.log(response);
+        if (response.success === true){
             location.reload();
+        } else {
+            userForm.setRegisterErrorMessage(`Пользователь с логином ${data} существует`)
         }
-        console.log(data);
     });
 }
 

@@ -3,15 +3,18 @@
 //выход из личного кабинета
 const logoutButton = new LogoutButton();
 
-logoutButton.action = () =>
-{
-    logout (() => {
-        if (){
-            location.reload();
-        }
+logoutButton.action = (logout, ()) => {
 
-    });
 }
+logoutButton.action(logout, ()=>{
+    if (logout.success === true){
+        location.reload();
+    }
+});
+
+
+
+
 
 //получение иформации о пользователе
 (current) = ((response) => {
@@ -61,17 +64,3 @@ moneyManager.addMoneyCallback(data, () => {
 
 
 
-
-userForm.loginFormCallback = (data) => {
-    this.data = data;
-    ApiConnector.login(data, (response)=>{
-        if (data === False){
-            response = `Пользователь с логином ${this.data} и указанным паролем не найден`
-            return response;
-        } else {
-            userId = '1'; // нужно где-то использовать?
-            location.reload();
-        }
-        console.log(data);
-    });
-}

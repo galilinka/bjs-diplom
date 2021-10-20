@@ -35,31 +35,34 @@ ApiConnector.getStocks = ((response) => {
 const moneyManager = new MoneyManager();
 
 //пополнение баланса
-moneyManager.addMoneyCallback(() => {
-    ApiConnector.addMoney(data, (response) =>{
+moneyManager.addMoneyCallback = (data) => {
+    ApiConnector.addMoney(data, (response) => {
         if (response.success === true){
             showProfile(data);
-            setMessage(isSuccess, message); 
         }
-    })
+        moneyManager.setMessage(isSuccess, message); 
+    });
+}
 
 //конвертирование валюты
-moneyManager.conversionMoneyCallback(() => {
+moneyManager.conversionMoneyCallback = (data) => {
     ApiConnector.convertMoney(data, (response) =>{
         if (response.success === true){
-            showProfile(data);
-            setMessage(isSuccess, message); 
+            showProfile(data); 
         }
+        moneyManager.setMessage(isSuccess, message);
     })
+}
 
 //перевод валюты
-moneyManager.sendMoneyCallback(() => {
+moneyManager.sendMoneyCallback = (data) => {
     ApiConnector.transferMoney(data, (response) =>{
         if (response.success === true){
             showProfile(data);
-            setMessage(isSuccess, message); 
         }
+        moneyManager.setMessage(isSuccess, message); 
     })
+}
 
  //работа с избранным
  const favoritesWidget = new FavoritesWidget();
